@@ -1,6 +1,8 @@
 <template>
-  <the-header title="Fun with Curie!"></the-header>
-  <the-resources></the-resources>
+  <div>
+    <the-header title="Fun with Curie!"></the-header>
+    <the-resources></the-resources>
+  </div>
 </template>
 
 <script>
@@ -13,8 +15,34 @@ export default {
   }
 };
 
+const qdata = {
+  prompt: 'Write a poem about a dog wearing skis',
+  temperature: 0.5,
+  max_tokens: 64,
+  top_p: 1.0,
+  frequency_penalty: 0.0,
+  presence_penalty: 0.0
+};
 
-
+fetch('https://api.openai.com/v1/engines/text-ada-001/completions', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${process.env.OPENAI_SECRET}`,
+  },
+  body: JSON.stringify(qdata)
+})
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      alert('Server returned ' + response.status + ' : ' + response.statusText);
+    }
+  })
+  // .then(response => {
+  //   this.result = response.body;
+  //   this.responseAvailable = true;
+  // })
 </script>
 
 <style>

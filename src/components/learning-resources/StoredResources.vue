@@ -1,23 +1,25 @@
 <template>
+<div>
   <ul>
-    <ask-question
+    <answers
       v-for="res in resources"
       :key="res.id"
       :id="res.id"
       :prompt="res.prompt"
       :response="res.response"
       :link="res.link"
-    ></ask-question>
+    ></answers>
   </ul>
+  </div>
 </template>
 
 <script>
-import AskQuestion from './AskQuestion.vue';
+import Answers from './Answers.vue';
 
 export default {
   inject: ['resources'],
   components: {
-    AskQuestion
+    Answers
   }
 };
 </script>

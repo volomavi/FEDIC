@@ -64,14 +64,14 @@ export default {
     setSelectedTab(tab) {
       this.selectedTab = tab;
     },
-    addResouce(prompt, response, url) {
-      const newResource = {
+    askQuestion(prompt, response, url) {
+      const newQuestion = {
         id: new Date().toISOString(),
         prompt: prompt,
         response: response,
         link: url
       };
-      this.storedResources.unshift(newResource);
+      this.storedResources.unshift(newQuestion);
       this.selectedTab = 'stored-resources';
     },
     removeResource(resId) {
